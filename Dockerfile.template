@@ -65,5 +65,9 @@ WORKDIR /
 ## uncomment if you want systemd
 ENV INITSYSTEM on
 
+# Prepare the image for mounting external data.
+RUN mkdir '/mnt/ext-data-0/' \
+  && echo 'LABEL=EXT-DATA-0 /mnt/ext-data-0 vfat rw,noauto,user 0 2' >> '/etc/fstab'
+
 # Start app
 CMD ["bash", "/usr/src/app/start.sh"]
